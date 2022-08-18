@@ -9,3 +9,7 @@ Route::get('/about', 'App\Http\Controllers\HomeController@about')->name("home.ab
 //getting the data
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('products.index');
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('products.show');
+
+//ADMIN ROUTE
+Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
+Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');

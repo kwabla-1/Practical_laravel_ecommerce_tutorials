@@ -35,7 +35,7 @@ class AdminProductController extends Controller
         $newProduct->save();
 
         if ($request->hasFile('image')) {
-            $imageName = $newProduct->getId().".".$request->file('image')->extension();
+            $imageName = $newProduct->getId().".".$request->file('image')->extension(); // could be 2.jpg
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())
@@ -45,6 +45,17 @@ class AdminProductController extends Controller
             $newProduct->save();
         }
 
+        return back();
+    }
+
+    public function edit($id)
+    {
+        
+    }
+
+    public function delete($id)
+    {
+        Product::destroy($id);
         return back();
     }
 }

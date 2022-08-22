@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mockery\Generator\Parameter;
 
 class Product extends Model
 {
@@ -27,6 +28,18 @@ class Product extends Model
             "price" => "required|numeric|gt:0",
             'image' => 'image',
             ]);
+    }
+
+    public static function sumPricesByQuantities($products,$productsInSession)
+    {
+        // Parameter - products ['rice']
+        //productsInSession = ['rice]
+        $total = 0;
+        foreach ($products as  $product) {
+            $total = $total + ($products->getPrice()*$productsInSession[$product->getId()]);
+        }
+
+        return $total;
     }
 
     public function getId(){ return $this->attributes['id'];}

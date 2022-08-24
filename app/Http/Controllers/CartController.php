@@ -16,7 +16,7 @@ class CartController extends Controller
 
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Product::sumPricesByQuantity($productsInCart,$productsInSession);
+            $total = Product::sumPricesByQuantities($productsInCart,$productsInSession);
         }
 
         $viewData = [];
@@ -26,6 +26,7 @@ class CartController extends Controller
         $viewData["products"] = $productsInCart;
 
         return view('cart.index')->with("viewData", $viewData);
+        
     }
 
     public function add(Request $request, $id)
